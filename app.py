@@ -182,8 +182,6 @@ st.sidebar.markdown("---")
 st.sidebar.markdown("### Project Information")
 st.sidebar.markdown("**Status:** ✅ Production Ready")
 st.sidebar.markdown("**Version:** 2.0 Professional")
-st.sidebar.markdown("**Countries:** 227")
-st.sidebar.markdown("**Geographic Data:** 140")
 
 # Load data
 if not all(
@@ -200,6 +198,14 @@ summary = load_summary_json()
 if master_df is None or results_df is None:
     st.error("⚠️ Analysis data not found. Please run the analysis first!")
     st.stop()
+
+geo_source = results_df if {'Latitude', 'Longitude'}.issubset(results_df.columns) else master_df
+geo_count = int(
+    geo_source[['Latitude', 'Longitude']].notna().all(axis=1).sum()
+) if {'Latitude', 'Longitude'}.issubset(geo_source.columns) else int(len(master_df))
+
+st.sidebar.markdown(f"**Countries:** {len(master_df)}")
+st.sidebar.markdown(f"**Geographic Data:** {geo_count}")
 
 # ============================================================
 # PAGE 1: OVERVIEW
@@ -221,7 +227,7 @@ if page == "📈 Overview":
     with col2:
         st.metric(
             "Geographic Data",
-            f"{len(master_df.dropna(subset=['Latitude', 'Longitude']))}",
+            f"{geo_count}",
             "With Coordinates"
         )
     
