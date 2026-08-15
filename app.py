@@ -63,12 +63,12 @@ BASE_DIR = Path(__file__).resolve().parent
 
 
 def resolve_data_path(filename: str) -> Path:
-    """Find a data file in the project root or the output folder."""
+    """Prefer the generated output files, but fall back to the project root."""
     candidates = [
-        BASE_DIR / filename,
         BASE_DIR / 'output' / filename,
-        Path.cwd() / filename,
+        BASE_DIR / filename,
         Path.cwd() / 'output' / filename,
+        Path.cwd() / filename,
     ]
 
     for candidate in candidates:
