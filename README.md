@@ -1,79 +1,78 @@
 # 🌾 Agricultural Investment Risk Analysis
-## Professional Data Analysis Framework
+## Professional Dashboard for Global Agricultural Investment Assessment
 
 **Course:** MScFE 600 Financial Data  
 **Team:** Nojus Vizgirdas, REGIS UWIMENA, IRUTABYOSE Yoramu  
-**Status:** Production Ready ✅
+**Status:** ✅ **Production Ready** | Version 2.0 Professional | Last Updated: 2026-08-15
 
 ---
 
-## 📋 Table of Contents
+## 🎯 Quick Links
 
-- [Overview](#overview)
-- [Features](#features)
-- [Quick Start](#quick-start)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Output Files](#output-files)
-- [Analysis Methodology](#analysis-methodology)
-- [Configuration](#configuration)
-- [Troubleshooting](#troubleshooting)
+| Resource | Purpose |
+|----------|---------|
+| 🚀 [**LAUNCH_SUMMARY.md**](LAUNCH_SUMMARY.md) | **START HERE** — Complete overview & deployment guide |
+| 📋 [DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md) | Pre-deployment verification steps |
+| 📊 [STREAMLIT_GUIDE.md](STREAMLIT_GUIDE.md) | Dashboard usage & platform deployment |
+| ⚡ [QUICK_REFERENCE.md](QUICK_REFERENCE.md) | Common commands & quick setup |
 
 ---
 
 ## 📊 Overview
 
-This project provides a comprehensive analysis framework for assessing agricultural investment risk using geospatial analysis and statistical modeling. It processes FAOSTAT (Food and Agriculture Organization of the United Nations) land use data to generate investment risk scores and visualizations.
+This project provides a **professional, production-ready** analysis framework for assessing agricultural investment opportunities and risks. It combines FAOSTAT data, geospatial analysis, and statistical modeling to deliver actionable insights across 140+ countries.
 
 **Key Capabilities:**
 - 🌍 Geospatial analysis with 140+ countries
-- 📈 Exploratory Data Analysis (EDA)
-- 📍 Geographically Weighted Regression (GWR)
-- 🗺️ Interactive mapping with Folium
-- 📊 Professional visualizations
-- 💾 Comprehensive data export
+- 📈 Exploratory Data Analysis (EDA) with 15+ visualizations
+- 📍 Advanced regression modeling (GWR with Linear Regression fallback)
+- 🗺️ Interactive geographic mapping with Folium
+- 📊 Professional Streamlit dashboard (7 interactive pages)
+- 💾 Comprehensive data export and reporting
+
+**Live Demo:** Deploy to [Streamlit Cloud](https://streamlit.io/cloud) in 5 minutes
 
 ---
 
 ## ✨ Features
 
-### 1. **Data Processing**
+### 1. **Interactive Dashboard** (Streamlit)
+- 7 professional pages with 15+ visualizations
+- Real-time filtering and data exploration
+- CSV data export functionality
+- Responsive design on desktop and tablet
+
+### 2. **Data Processing**
 - Load and validate FAOSTAT land use data
-- Create aggregated master dataset
-- Handle missing values gracefully
+- Create aggregated master dataset with 227 countries
+- Financial metrics and risk indicators
 - Comprehensive error handling and logging
 
-### 2. **Financial Metrics**
-- Agricultural GDP estimation (synthetic but realistic)
-- Crop diversity scoring
-- Investment attractiveness scoring
-- Risk-adjusted metrics
+### 3. **Financial Metrics**
+- **Investment Score** (0-100): Country attractiveness
+- **Agricultural GDP**: Sector economic output  
+- **Crop Diversity Score** (1-10): Diversification level
+- **Risk-Adjusted Metrics**: Comprehensive risk assessment
 
-### 3. **Risk Assessment**
-- Cropland dependency risk analysis
+### 4. **Risk Assessment**
+- Cropland dependency analysis
 - Agricultural importance scoring
-- Composite risk calculation
+- Composite risk calculation (0-1 scale)
 - Statistical correlation analysis
 
-### 4. **Geospatial Analysis**
-- Geographic coordinate assignment for 140+ countries
-- Geographically Weighted Regression (with fallback to Linear Regression)
+### 5. **Geospatial Analysis**
+- Geographic coordinates for 140+ countries
+- Geographically Weighted Regression (GWR) modeling
 - Spatial relationship analysis
+- Interactive HTML map with markers
 
-### 5. **Visualizations**
-- 4-panel exploratory data analysis plots
-- Spatial maps with geographic coordinates
-- Interactive HTML maps
-- High-resolution PNG exports (300 DPI)
-
-### 6. **Professional Features**
+### 6. **Professional Architecture**
+- ✅ Object-oriented, modular design
 - ✅ Comprehensive logging system
-- ✅ Input validation
-- ✅ Error handling with graceful fallbacks
-- ✅ Structured output organization
-- ✅ JSON summary reports
-- ✅ Performance tracking
+- ✅ Input validation & error handling
+- ✅ Graceful fallbacks (GWR → Linear Regression)
+- ✅ JSON summary reports & exports
+- ✅ Performance tracking & optimization
 
 ---
 

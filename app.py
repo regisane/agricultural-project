@@ -25,32 +25,97 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom styling
+# Custom styling - Professional theme
 st.markdown("""
     <style>
+    /* Main Header */
     .main-header {
-        color: #2E7D32;
-        font-size: 3em;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, #2E7D32 0%, #558B2F 100%);
+        color: white;
+        font-size: 2.8em;
+        font-weight: 800;
+        padding: 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+        letter-spacing: -0.5px;
     }
+    
+    /* Section Headers */
+    h2 {
+        color: #1B5E20;
+        border-bottom: 3px solid #4CAF50;
+        padding-bottom: 0.5rem;
+        font-weight: 700;
+    }
+    
+    /* Metric Cards */
     .metric-card {
-        background-color: #f0f2f6;
-        border-radius: 10px;
+        background: linear-gradient(135deg, #F5F5F5 0%, #FAFAFA 100%);
+        border-left: 5px solid #4CAF50;
+        border-radius: 8px;
         padding: 20px;
-        margin: 10px 0;
+        margin: 12px 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
+    
+    /* Text Colors */
     .success-text {
         color: #2E7D32;
-        font-weight: bold;
+        font-weight: 600;
     }
     .warning-text {
-        color: #F57C00;
-        font-weight: bold;
+        color: #E65100;
+        font-weight: 600;
     }
     .danger-text {
-        color: #C62828;
-        font-weight: bold;
+        color: #B71C1C;
+        font-weight: 600;
+    }
+    .info-text {
+        color: #0277BD;
+        font-weight: 600;
+    }
+    
+    /* Info Boxes */
+    .info-box {
+        background-color: #E8F5E9;
+        border-left: 4px solid #4CAF50;
+        padding: 1rem;
+        border-radius: 6px;
+        margin: 1rem 0;
+    }
+    
+    /* Footer */
+    .footer {
+        text-align: center;
+        color: #666;
+        font-size: 0.85em;
+        padding: 2rem 1rem;
+        border-top: 2px solid #E0E0E0;
+        margin-top: 3rem;
+    }
+    .footer-brand {
+        color: #2E7D32;
+        font-weight: 700;
+    }
+    
+    /* Data Tables */
+    .data-table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    .data-table thead {
+        background-color: #f5f5f5;
+        font-weight: 600;
+    }
+    
+    /* Divider */
+    hr {
+        border: none;
+        height: 2px;
+        background: linear-gradient(to right, transparent, #ddd, transparent);
+        margin: 2rem 0;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -153,13 +218,19 @@ def ensure_analysis_data() -> bool:
 # HEADER
 # ============================================================
 
-col1, col2, col3 = st.columns([1, 2, 1])
-with col2:
-    st.markdown('<h1 class="main-header">🌾 Agricultural Investment Risk Analysis</h1>', 
-                unsafe_allow_html=True)
+st.markdown('<div class="main-header">🌾 Agricultural Investment Risk Analysis</div>', 
+            unsafe_allow_html=True)
 
-st.markdown("### Professional Dashboard for Global Agricultural Analysis")
-st.markdown("---")
+st.markdown("""
+<div style='text-align: center; color: #666; margin: 0.5rem 0 2rem 0;'>
+    <p style='font-size: 1.05em; margin: 0.5rem 0;'>
+        <strong>Professional Global Agricultural Investment & Risk Assessment</strong>
+    </p>
+    <p style='font-size: 0.95em; color: #999; margin: 0;'>
+        Powered by FAOSTAT Data • Geospatial Analysis • Statistical Modeling
+    </p>
+</div>
+""", unsafe_allow_html=True)
 
 # ============================================================
 # SIDEBAR NAVIGATION
@@ -179,9 +250,12 @@ page = st.sidebar.radio(
 )
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("### Project Information")
-st.sidebar.markdown("**Status:** ✅ Production Ready")
-st.sidebar.markdown("**Version:** 2.0 Professional")
+st.sidebar.markdown("""
+### 📋 Project Information
+**Status:** ✅ Production Ready  
+**Version:** 2.0 Professional  
+**Updated:** 2026-08-15
+""")
 
 # Load data
 if not all(
@@ -684,28 +758,47 @@ elif page == "📉 Visualizations":
 elif page == "ℹ️ About & Info":
     st.header("ℹ️ About This Analysis")
     
+    st.markdown("""
+    <div class='info-box'>
+    <strong>🎯 Mission:</strong> Provide data-driven insights into global agricultural investment opportunities 
+    and risk assessment using advanced geospatial analysis and statistical modeling.
+    </div>
+    """, unsafe_allow_html=True)
+    
     col1, col2 = st.columns(2)
     
     with col1:
         st.subheader("📊 Project Overview")
         st.markdown("""
-        This dashboard presents a comprehensive analysis of global agricultural 
-        investment opportunities and risks using FAOSTAT land use data.
+        This professional dashboard analyzes **140+ countries** across multiple 
+        agricultural metrics to identify investment opportunities and risk factors.
         
-        **Data Source:** FAOSTAT (Food and Agriculture Organization)
-        **Analysis Type:** Geospatial & Statistical Analysis
-        **Methodology:** Geographically Weighted Regression (with fallback to Linear Regression)
+        **Key Capabilities:**
+        - 🌍 Geospatial analysis with coordinates
+        - 📊 Statistical regression modeling  
+        - 💰 Investment scoring system
+        - ⚠️ Risk assessment framework
+        - 🗺️ Interactive mapping
+        
+        **Data Source:** FAOSTAT (Food and Agriculture Organization)  
+        **Analysis Type:** Geospatial & Statistical  
+        **Methodology:** Geographically Weighted Regression + Linear Regression Fallback
         """)
     
     with col2:
-        st.subheader("👥 Project Team")
+        st.subheader("👥 Development Team")
         st.markdown("""
-        **Course:** MScFE 600 Financial Data
+        **Course:** MScFE 600 Financial Data  
+        **Institution:** Washington University in St. Louis
         
-        **Team Members:**
-        - Nojus Vizgirdas
-        - REGIS UWIMENA
-        - IRUTABYOSE Yoramu
+        **Contributors:**
+        - 🔬 Nojus Vizgirdas
+        - 🔬 REGIS UWIMENA  
+        - 🔬 IRUTABYOSE Yoramu
+        
+        **Project Status:** ✅ Production Ready  
+        **Version:** 2.0 Professional  
+        **Last Updated:** August 2026
         """)
     
     st.markdown("---")
@@ -817,12 +910,19 @@ elif page == "ℹ️ About & Info":
 # FOOTER
 # ============================================================
 
+# Footer
 st.markdown("---")
 st.markdown("""
-<div style='text-align: center'>
-    <p style='color: gray; font-size: 0.9em;'>
-        Agricultural Investment Risk Analysis Dashboard | Version 2.0 | 
-        <i>Last Updated: 2026-08-15</i>
+<div class='footer'>
+    <p>
+        <span class='footer-brand'>Agricultural Investment Risk Analysis</span> | 
+        <em>Professional Dashboard v2.0</em>
+    </p>
+    <p style='font-size: 0.8em; color: #999; margin-top: 0.5rem;'>
+        Developed for MScFE 600 Financial Data Analysis
+    </p>
+    <p style='font-size: 0.75em; color: #bbb; margin-top: 1rem;'>
+        © 2026 Agricultural Analysis Team • <em>Last Updated: 2026-08-15</em>
     </p>
 </div>
 """, unsafe_allow_html=True)
