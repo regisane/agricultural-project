@@ -12,6 +12,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import json
+import subprocess
+import sys
 from pathlib import Path
 from datetime import datetime
 
@@ -57,32 +59,95 @@ st.markdown("""
 # DATA LOADING
 # ============================================================
 
+BASE_DIR = Path(__file__).resolve().parent
+
+
+def resolve_data_path(filename: str) -> Path:
+    """Find a data file in the project root or the output folder."""
+    candidates = [
+        BASE_DIR / filename,
+        BASE_DIR / 'output' / filename,
+        Path.cwd() / filename,
+        Path.cwd() / 'output' / filename,
+    ]
+
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+
+    return candidates[0]
+
+
 @st.cache_data
 def load_master_data():
     """Load master dataset."""
+    data_path = resolve_data_path('agricultural_master_data.csv')
     try:
-        return pd.read_csv('output/agricultural_master_data.csv')
+        return pd.read_csv(data_path)
     except FileNotFoundError:
-        st.error("❌ agricultural_master_data.csv not found. Run analysis first!")
+        st.error(
+            "❌ agricultural_master_data.csv not found. Run: python agricultural_analysis.py"
+        )
         return None
 
 @st.cache_data
 def load_results_data():
     """Load analysis results."""
+    data_path = resolve_data_path('final_results.csv')
     try:
-        return pd.read_csv('output/final_results.csv')
+        return pd.read_csv(data_path)
     except FileNotFoundError:
-        st.error("❌ final_results.csv not found. Run analysis first!")
+        st.error(
+            "❌ final_results.csv not found. Run: python agricultural_analysis.py"
+        )
         return None
 
 @st.cache_data
 def load_summary_json():
     """Load summary statistics."""
+    data_path = resolve_data_path('analysis_summary.json')
     try:
-        with open('output/analysis_summary.json', 'r') as f:
+        with open(data_path, 'r') as f:
             return json.load(f)
     except FileNotFoundError:
         return None
+
+
+def ensure_analysis_data() -> bool:
+    """Generate missing analysis outputs automatically when the app starts."""
+    required_files = [
+        'agricultural_master_data.csv',
+        'final_results.csv',
+        'analysis_summary.json'
+    ]
+
+    for filename in required_files:
+        if resolve_data_path(filename).exists():
+            continue
+
+        with st.spinner("Generating analysis data... This can take a few moments."):
+            try:
+                subprocess.run(
+                    [sys.executable, str(BASE_DIR / 'agricultural_analysis.py')],
+                    cwd=str(BASE_DIR),
+                    check=False,
+                    capture_output=True,
+                    text=True,
+                    timeout=600,
+                )
+            except (subprocess.TimeoutExpired, OSError) as exc:
+                st.error(f"Analysis generation failed: {exc}")
+                return False
+
+        # Re-check after generation attempt.
+        if not resolve_data_path(filename).exists():
+            st.error(
+                "❌ Required analysis files were not generated. "
+                "Please run: python agricultural_analysis.py"
+            )
+            return False
+
+    return True
 
 # ============================================================
 # HEADER
@@ -121,6 +186,13 @@ st.sidebar.markdown("**Countries:** 227")
 st.sidebar.markdown("**Geographic Data:** 140")
 
 # Load data
+if not all(
+    resolve_data_path(name).exists()
+    for name in ['agricultural_master_data.csv', 'final_results.csv', 'analysis_summary.json']
+):
+    if not ensure_analysis_data():
+        st.stop()
+
 master_df = load_master_data()
 results_df = load_results_data()
 summary = load_summary_json()
