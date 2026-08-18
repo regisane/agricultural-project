@@ -1308,3 +1308,10 @@ st.markdown("""
     </p>
 </div>
 """, unsafe_allow_html=True)
+
+# ============================================================
+# MAIN ENTRY POINT
+# ============================================================
+
+if __name__ == "__main__":
+    pass  # Streamlit runs the script automatically
