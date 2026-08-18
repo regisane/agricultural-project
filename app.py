@@ -496,7 +496,8 @@ st.markdown("""
 # DATA LOADING
 # ============================================================
 
-BASE_DIR = Path(__file__).resolve().parent
+# Use absolute path for reliability in all execution contexts
+BASE_DIR = Path('/workspace')
 
 
 def resolve_data_path(filename: str) -> Path:
