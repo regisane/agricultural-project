@@ -25,102 +25,157 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom styling - Professional theme with visible background
+# Custom styling - Professional Premium Theme
 st.markdown("""
     <style>
-    /* Background Pattern with 🌾 emoji */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+    
+    /* Global Styles */
+    * {
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    /* Animated Gradient Background */
     .stApp {
-        background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e9 100%);
+        background: linear-gradient(-45deg, #f0f8f0, #e8f5e9, #c8e6c9, #a5d6a7);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
         position: relative;
     }
     
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    /* Floating Particles Effect */
     .stApp::before {
-        content: "🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾";
+        content: "🌾 🌱 🚜 🌻 🌽 🥬 🍃 🌿";
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        font-size: 180px;
-        opacity: 0.08;
+        font-size: 120px;
+        opacity: 0.05;
         white-space: pre-wrap;
         word-wrap: break-word;
         pointer-events: none;
         z-index: 0;
         overflow: hidden;
-        line-height: 1.2;
+        line-height: 1.5;
+        animation: float 20s ease-in-out infinite;
     }
     
-    /* Ensure content stays on top of background */
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    /* Ensure content stays on top */
     [data-testid="stVerticalBlock"] {
         position: relative;
         z-index: 1;
     }
     
-    /* Main Header */
+    /* Premium Main Header with Glow Effect */
     .main-header {
-        background: linear-gradient(135deg, #2E7D32 0%, #558B2F 100%);
+        background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #43A047 100%);
         color: white;
-        font-size: 2.8em;
+        font-size: 3em;
         font-weight: 800;
-        padding: 1.5rem;
-        border-radius: 12px;
+        padding: 2rem;
+        border-radius: 20px;
         text-align: center;
-        box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
-        letter-spacing: -0.5px;
+        box-shadow: 0 8px 32px rgba(46, 125, 50, 0.3), 
+                    0 0 60px rgba(76, 175, 80, 0.2);
+        letter-spacing: -1px;
+        position: relative;
+        z-index: 2;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        border: 2px solid rgba(255,255,255,0.2);
+    }
+    
+    /* Subtitle with premium styling */
+    .subtitle {
+        font-size: 1.3em;
+        color: #388E3C;
+        font-weight: 600;
+        text-align: center;
+        margin: 1rem 0;
         position: relative;
         z-index: 2;
     }
     
-    /* Section Headers */
+    /* Section Headers with Icon */
     h2 {
         color: #1B5E20;
-        border-bottom: 3px solid #4CAF50;
-        padding-bottom: 0.5rem;
+        border-bottom: 4px solid #4CAF50;
+        padding-bottom: 0.8rem;
         font-weight: 700;
+        font-size: 2em;
+        position: relative;
+        z-index: 2;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    
+    h3 {
+        color: #2E7D32;
+        font-weight: 600;
         position: relative;
         z-index: 2;
     }
     
-    /* Metric Cards */
+    /* Premium Metric Cards with Hover Effect */
     .metric-card {
-        background: linear-gradient(135deg, #F5F5F5 0%, #FAFAFA 100%);
-        border-left: 5px solid #4CAF50;
-        border-radius: 8px;
-        padding: 20px;
-        margin: 12px 0;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+        border-left: 6px solid #4CAF50;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 15px 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 
+                    0 0 30px rgba(76, 175, 80, 0.1);
         position: relative;
         z-index: 2;
+        transition: all 0.3s ease;
+    }
+    
+    .metric-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 
+                    0 0 40px rgba(76, 175, 80, 0.2);
     }
     
     /* Text Colors */
     .success-text {
         color: #2E7D32;
-        font-weight: 600;
+        font-weight: 700;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     .warning-text {
         color: #E65100;
-        font-weight: 600;
+        font-weight: 700;
     }
     .danger-text {
         color: #B71C1C;
-        font-weight: 600;
+        font-weight: 700;
     }
     .info-text {
         color: #0277BD;
-        font-weight: 600;
+        font-weight: 700;
     }
     
-    /* Info Boxes */
+    /* Premium Info Boxes */
     .info-box {
-        background-color: #E8F5E9;
-        border-left: 4px solid #4CAF50;
-        padding: 1rem;
-        border-radius: 6px;
-        margin: 1rem 0;
+        background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        border-left: 6px solid #4CAF50;
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin: 1.5rem 0;
         position: relative;
         z-index: 2;
+        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.15);
     }
     
     /* Content Sections */
@@ -134,18 +189,36 @@ st.markdown("""
         z-index: 2;
     }
     
-    /* Footer */
+    /* Premium Footer */
     .footer {
         text-align: center;
         color: #666;
-        font-size: 0.85em;
-        padding: 2rem 1rem;
-        border-top: 2px solid #E0E0E0;
+        font-size: 0.9em;
+        padding: 2.5rem 1rem;
+        background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e9 100%);
+        border-top: 3px solid #4CAF50;
         margin-top: 3rem;
+        border-radius: 15px 15px 0 0;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
     }
     .footer-brand {
         color: #2E7D32;
-        font-weight: 700;
+        font-weight: 800;
+        font-size: 1.2em;
+    }
+    
+    /* Developer Badge */
+    .dev-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #2E7D32 0%, #43A047 100%);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        margin: 5px;
+        box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+        position: relative;
+        z-index: 2;
     }
     
     /* Data Tables */
@@ -154,16 +227,75 @@ st.markdown("""
         width: 100%;
     }
     .data-table thead {
-        background-color: #f5f5f5;
-        font-weight: 600;
+        background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+        color: white;
+        font-weight: 700;
     }
     
     /* Divider */
     hr {
         border: none;
-        height: 2px;
-        background: linear-gradient(to right, transparent, #ddd, transparent);
-        margin: 2rem 0;
+        height: 3px;
+        background: linear-gradient(to right, transparent, #4CAF50, transparent);
+        margin: 2.5rem 0;
+        border-radius: 2px;
+    }
+    
+    /* Button Styling */
+    .stButton>button {
+        background: linear-gradient(135deg, #2E7D32 0%, #43A047 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 12px 30px;
+        font-weight: 600;
+        font-size: 1em;
+        box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+        transition: all 0.3s ease;
+    }
+    
+    .stButton>button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
+    }
+    
+    /* Sidebar Styling */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%);
+    }
+    
+    [data-testid="stSidebar"] * {
+        color: white !important;
+    }
+    
+    /* Highlight Box */
+    .highlight-box {
+        background: linear-gradient(135deg, #FFF9C4 0%, #FFECB3 100%);
+        border: 3px solid #FFA000;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 0 4px 20px rgba(255, 160, 0, 0.2);
+        position: relative;
+        z-index: 2;
+    }
+    
+    /* Feature Card */
+    .feature-card {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 10px 0;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border: 2px solid #C8E6C9;
+        position: relative;
+        z-index: 2;
+        transition: all 0.3s ease;
+    }
+    
+    .feature-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 25px rgba(0,0,0,0.15);
     }
     </style>
     """, unsafe_allow_html=True)
@@ -270,12 +402,12 @@ st.markdown('<div class="main-header">🌾 Agricultural Investment Risk Analysis
             unsafe_allow_html=True)
 
 st.markdown("""
-<div style='text-align: center; color: #666; margin: 0.5rem 0 2rem 0;'>
-    <p style='font-size: 1.05em; margin: 0.5rem 0;'>
-        <strong>Professional Global Agricultural Investment & Risk Assessment</strong>
+<div class='subtitle'>
+    <p style='margin: 0.5rem 0;'>
+        <strong>🌍 Professional Global Agricultural Investment & Risk Assessment Platform</strong>
     </p>
-    <p style='font-size: 0.95em; color: #999; margin: 0;'>
-        Powered by FAOSTAT Data • Geospatial Analysis • Statistical Modeling
+    <p style='font-size: 0.9em; color: #666; margin: 0.5rem 0;'>
+        📊 Powered by FAOSTAT Data • 🗺️ Geospatial Analysis • 📈 Advanced Statistical Modeling • 🤖 AI-Driven Insights
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -834,20 +966,31 @@ elif page == "ℹ️ About & Info":
         """)
     
     with col2:
-        st.subheader("👥 Development Team")
+        st.subheader("👤 Project Owner & Developer")
         st.markdown("""
-        **Course:** MScFE 600 Financial Data  
-        **Institution:** Washington University in St. Louis
+        <div style='text-align: center; padding: 1rem; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); border-radius: 15px; border: 2px solid #4CAF50;'>
+            <div class='dev-badge' style='font-size: 1.2em; margin-bottom: 10px;'>
+                👨‍💻 Lead Developer
+            </div>
+            <h3 style='color: #2E7D32; margin: 10px 0;'>REGIS UWIMENA</h3>
+            <p style='color: #555; font-size: 0.95em;'><strong>MScFE 600 Financial Data</strong></p>
+            <p style='color: #666; font-size: 0.9em;'>Washington University in St. Louis</p>
+            <div style='margin-top: 15px;'>
+                <span style='background: #4CAF50; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.85em; margin: 3px;'>✅ Project Owner</span>
+                <span style='background: #2E7D32; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.85em; margin: 3px;'>🏆 Lead Analyst</span>
+                <span style='background: #1B5E20; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.85em; margin: 3px;'>💻 Full Stack Developer</span>
+            </div>
+        </div>
         
-        **Contributors:**
-        - 🔬 Nojus Vizgirdas
-        - 🔬 REGIS UWIMENA  
-        - 🔬 IRUTABYOSE Yoramu
+        <div style='margin-top: 20px; text-align: center;'>
+            <p style='color: #666; font-size: 0.9em;'><em>"Transforming agricultural data into actionable investment insights through advanced analytics and geospatial modeling."</em></p>
+        </div>
         
-        **Project Status:** ✅ Production Ready  
-        **Version:** 2.0 Professional  
-        **Last Updated:** August 2026
-        """)
+        <div style='margin-top: 15px; text-align: center;'>
+            <p style='color: #4CAF50; font-weight: 600;'>✅ Project Status: Production Ready</p>
+            <p style='color: #666; font-size: 0.9em;'>Version 3.0 Premium Edition • Last Updated: August 2026</p>
+        </div>
+        """, unsafe_allow_html=True)
     
     st.markdown("---")
     
@@ -963,14 +1106,17 @@ st.markdown("---")
 st.markdown("""
 <div class='footer'>
     <p>
-        <span class='footer-brand'>Agricultural Investment Risk Analysis</span> | 
-        <em>Professional Dashboard v2.0</em>
+        <span class='footer-brand'>🌾 Agricultural Investment Risk Analysis</span> | 
+        <em>Premium Dashboard v3.0</em>
     </p>
-    <p style='font-size: 0.8em; color: #999; margin-top: 0.5rem;'>
-        Developed for MScFE 600 Financial Data Analysis
+    <p style='font-size: 0.85em; color: #666; margin-top: 0.5rem;'>
+        👨‍💻 Developed by <strong>REGIS UWIMENA</strong> for MScFE 600 Financial Data Analysis
     </p>
-    <p style='font-size: 0.75em; color: #bbb; margin-top: 1rem;'>
-        © 2026 Agricultural Analysis Team • <em>Last Updated: 2026-08-15</em>
+    <p style='font-size: 0.8em; color: #4CAF50; font-weight: 600; margin-top: 0.8rem;'>
+        🏆 Washington University in St. Louis • Project Owner & Lead Developer
+    </p>
+    <p style='font-size: 0.75em; color: #999; margin-top: 1rem;'>
+        © 2026 Regis Uwimena • <em>Last Updated: 2026-08-18</em> • All Rights Reserved
     </p>
 </div>
 """, unsafe_allow_html=True)
