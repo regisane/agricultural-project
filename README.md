@@ -2,8 +2,8 @@
 ## Professional Dashboard for Global Agricultural Investment Assessment
 
 **Course:** MScFE 600 Financial Data  
-**Team:** Nojus Vizgirdas, REGIS UWIMENA, IRUTABYOSE Yoramu  
-**Status:** ✅ **Production Ready** | Version 2.0 Professional | Last Updated: 2026-08-15
+**Project Owner & Lead Developer:** REGIS UWIMENA  
+**Status:** ✅ **Production Ready** | Version 3.0 Premium | Last Updated: 2026-08-18
 
 ---
 
