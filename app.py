@@ -25,166 +25,369 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom styling - Professional Premium Theme
+# Custom styling - Professional Dashboard Theme (Based on HTML Design)
 st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;600;700;800&display=swap');
     
     /* Global Styles */
     * {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Segoe UI', 'Poppins', sans-serif;
     }
     
-    /* Animated Gradient Background */
+    /* Clean Professional Background */
     .stApp {
-        background: linear-gradient(-45deg, #f0f8f0, #e8f5e9, #c8e6c9, #a5d6a7);
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
+        background: #f0f4f8;
         position: relative;
     }
     
-    @keyframes gradientBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-    
-    /* Floating Particles Effect */
-    .stApp::before {
-        content: "🌾 🌱 🚜 🌻 🌽 🥬 🍃 🌿";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        font-size: 120px;
-        opacity: 0.05;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        pointer-events: none;
-        z-index: 0;
-        overflow: hidden;
-        line-height: 1.5;
-        animation: float 20s ease-in-out infinite;
-    }
-    
-    @keyframes float {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-20px) rotate(5deg); }
-    }
-    
-    /* Ensure content stays on top */
-    [data-testid="stVerticalBlock"] {
-        position: relative;
-        z-index: 1;
-    }
-    
-    /* Premium Main Header with Glow Effect */
-    .main-header {
-        background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #43A047 100%);
-        color: white;
-        font-size: 3em;
-        font-weight: 800;
-        padding: 2rem;
+    /* Main Dashboard Container */
+    .dashboard-container {
+        max-width: 1300px;
+        margin: 0 auto;
+        background: white;
         border-radius: 20px;
-        text-align: center;
-        box-shadow: 0 8px 32px rgba(46, 125, 50, 0.3), 
-                    0 0 60px rgba(76, 175, 80, 0.2);
-        letter-spacing: -1px;
-        position: relative;
-        z-index: 2;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        border: 2px solid rgba(255,255,255,0.2);
+        padding: 30px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
     }
     
-    /* Subtitle with premium styling */
-    .subtitle {
-        font-size: 1.3em;
-        color: #388E3C;
-        font-weight: 600;
-        text-align: center;
-        margin: 1rem 0;
-        position: relative;
-        z-index: 2;
-    }
-    
-    /* Section Headers with Icon */
-    h2 {
-        color: #1B5E20;
-        border-bottom: 4px solid #4CAF50;
-        padding-bottom: 0.8rem;
+    /* Premium Main Header */
+    .main-header {
+        font-size: 2.2em;
+        color: #1a2a3a;
         font-weight: 700;
-        font-size: 2em;
+        letter-spacing: -0.5px;
+        margin-bottom: 0.5rem;
         position: relative;
         z-index: 2;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    
+    .main-header span {
+        color: #2e7d32;
+    }
+    
+    /* Subtitle */
+    .subtitle {
+        font-size: 1em;
+        color: #5a6a7a;
+        margin: 0.5rem 0 2rem 0;
+        position: relative;
+        z-index: 2;
+    }
+    
+    /* Section Headers */
+    h2 {
+        color: #1a2a3a;
+        border-bottom: 3px solid #2e7d32;
+        padding-bottom: 0.6rem;
+        font-weight: 600;
+        font-size: 1.6em;
+        position: relative;
+        z-index: 2;
     }
     
     h3 {
-        color: #2E7D32;
+        color: #1a2a3a;
         font-weight: 600;
+        font-size: 1.2em;
         position: relative;
         z-index: 2;
     }
     
-    /* Premium Metric Cards with Hover Effect */
-    .metric-card {
-        background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
-        border-left: 6px solid #4CAF50;
-        border-radius: 15px;
-        padding: 25px;
-        margin: 15px 0;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 
-                    0 0 30px rgba(76, 175, 80, 0.1);
-        position: relative;
-        z-index: 2;
+    /* Professional Stats Cards Grid */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+    
+    .stat-card {
+        background: #f8fafc;
+        border-radius: 14px;
+        padding: 18px 20px;
+        border-left: 4px solid #2e7d32;
         transition: all 0.3s ease;
     }
     
-    .metric-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 
-                    0 0 40px rgba(76, 175, 80, 0.2);
+    .stat-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .stat-card .label {
+        font-size: 13px;
+        color: #5a6a7a;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+    }
+    
+    .stat-card .value {
+        font-size: 28px;
+        font-weight: 700;
+        color: #1a2a3a;
+        margin: 5px 0;
+    }
+    
+    .stat-card .sub {
+        font-size: 13px;
+        color: #5a6a7a;
+    }
+    
+    /* Navigation Tabs */
+    .nav-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 18px;
+        padding: 14px 0;
+        border-top: 1px solid #e9edf2;
+        border-bottom: 1px solid #e9edf2;
+        margin: 20px 0;
+    }
+    
+    .nav-tab {
+        color: #1a2a3a;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.2s;
+        background: transparent;
+    }
+    
+    .nav-tab:hover {
+        background: #e8f5e9;
+        color: #2e7d32;
+    }
+    
+    .nav-tab.active {
+        background: #2e7d32;
+        color: white;
+    }
+    
+    /* Two Column Layout */
+    .two-col {
+        display: grid;
+        grid-template-columns: 2fr 1.2fr;
+        gap: 30px;
+        margin: 30px 0;
+    }
+    
+    @media (max-width: 860px) {
+        .two-col {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    /* Project Info Box */
+    .project-info {
+        background: #f8fafc;
+        border-radius: 14px;
+        padding: 20px 24px;
+        margin: 20px 0;
+    }
+    
+    .project-info .title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1a2a3a;
+        margin-bottom: 15px;
+    }
+    
+    .project-info .row {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        font-size: 14px;
+        border-bottom: 1px solid #e9edf2;
+    }
+    
+    .project-info .row:last-child {
+        border-bottom: none;
+    }
+    
+    .project-info .row .key {
+        color: #5a6a7a;
+    }
+    
+    .project-info .row .value {
+        font-weight: 500;
+        color: #1a2a3a;
+    }
+    
+    .badge {
+        background: #2e7d32;
+        color: white;
+        padding: 4px 14px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    
+    /* Country List Items */
+    .country-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #e9edf2;
+        font-size: 14px;
+        transition: all 0.2s;
+    }
+    
+    .country-item:hover {
+        background: #f5f5f5;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 8px;
+    }
+    
+    .country-item:last-child {
+        border-bottom: none;
+    }
+    
+    .country-item .rank {
+        font-weight: 700;
+        color: #2e7d32;
+        margin-right: 12px;
+        font-size: 13px;
+    }
+    
+    .country-item .name {
+        flex: 1;
+        font-weight: 500;
+        color: #1a2a3a;
+    }
+    
+    .country-item .score {
+        font-weight: 600;
+        color: #1a2a3a;
+    }
+    
+    .country-item .land {
+        color: #5a6a7a;
+        font-size: 13px;
+        margin-left: 8px;
+    }
+    
+    /* Risk Summary Box */
+    .risk-summary {
+        background: #f8fafc;
+        border-radius: 14px;
+        padding: 20px 24px;
+        margin: 20px 0;
+    }
+    
+    .risk-summary .title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1a2a3a;
+        margin-bottom: 10px;
+    }
+    
+    .risk-summary .subtitle {
+        font-size: 13px;
+        color: #5a6a7a;
+        margin-bottom: 15px;
+    }
+    
+    .risk-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .risk-stat-item {
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    
+    .risk-stat-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .risk-stat-item .number {
+        font-size: 24px;
+        font-weight: 700;
+        color: #1a2a3a;
+    }
+    
+    .risk-stat-item .label {
+        font-size: 12px;
+        color: #5a6a7a;
+        margin-top: 5px;
+    }
+    
+    .risk-stat-item.highlight {
+        background: linear-gradient(135deg, #1a2a3a 0%, #2e3d4a 100%);
+    }
+    
+    .risk-stat-item.highlight .number,
+    .risk-stat-item.highlight .label {
+        color: white;
+    }
+    
+    /* Risk Item List */
+    .risk-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #e9edf2;
+        font-size: 14px;
+    }
+    
+    .risk-item:last-child {
+        border-bottom: none;
+    }
+    
+    .risk-item .name {
+        font-weight: 500;
+        color: #1a2a3a;
+    }
+    
+    .risk-item .risk-value {
+        font-weight: 600;
+        color: #c62828;
+    }
+    
+    .risk-item .diversity {
+        color: #5a6a7a;
+        font-size: 13px;
+        margin-left: 8px;
     }
     
     /* Text Colors */
     .success-text {
-        color: #2E7D32;
+        color: #2e7d32;
         font-weight: 700;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     .warning-text {
-        color: #E65100;
+        color: #e65100;
         font-weight: 700;
     }
     .danger-text {
-        color: #B71C1C;
+        color: #c62828;
         font-weight: 700;
     }
     .info-text {
-        color: #0277BD;
+        color: #0277bd;
         font-weight: 700;
     }
     
-    /* Premium Info Boxes */
+    /* Info Boxes */
     .info-box {
-        background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
-        border-left: 6px solid #4CAF50;
-        padding: 1.5rem;
-        border-radius: 12px;
-        margin: 1.5rem 0;
-        position: relative;
-        z-index: 2;
-        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.15);
-    }
-    
-    /* Content Sections */
-    [data-testid="stMetricValue"],
-    [data-testid="stMetricDelta"],
-    [data-testid="stMetric"],
-    [data-testid="stExpander"],
-    [data-testid="stDataFrame"],
-    [data-testid="element-container"] {
+        background: #f8fafc;
+        border-left: 4px solid #2e7d32;
+        padding: 1.2rem;
+        border-radius: 10px;
+        margin: 1.2rem 0;
         position: relative;
         z-index: 2;
     }
@@ -192,25 +395,23 @@ st.markdown("""
     /* Premium Footer */
     .footer {
         text-align: center;
-        color: #666;
-        font-size: 0.9em;
-        padding: 2.5rem 1rem;
-        background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e9 100%);
-        border-top: 3px solid #4CAF50;
+        color: #5a6a7a;
+        font-size: 13px;
+        padding: 2rem 1rem;
         margin-top: 3rem;
-        border-radius: 15px 15px 0 0;
-        box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+        border-top: 1px solid #e9edf2;
     }
+    
     .footer-brand {
-        color: #2E7D32;
-        font-weight: 800;
-        font-size: 1.2em;
+        color: #1a2a3a;
+        font-weight: 700;
+        font-size: 1.1em;
     }
     
     /* Developer Badge */
     .dev-badge {
         display: inline-block;
-        background: linear-gradient(135deg, #2E7D32 0%, #43A047 100%);
+        background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%);
         color: white;
         padding: 8px 20px;
         border-radius: 25px;
@@ -221,36 +422,30 @@ st.markdown("""
         z-index: 2;
     }
     
-    /* Data Tables */
-    .data-table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-    .data-table thead {
-        background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
-        color: white;
-        font-weight: 700;
-    }
-    
     /* Divider */
     hr {
         border: none;
-        height: 3px;
-        background: linear-gradient(to right, transparent, #4CAF50, transparent);
-        margin: 2.5rem 0;
-        border-radius: 2px;
+        height: 2px;
+        background: linear-gradient(to right, transparent, #e9edf2, transparent);
+        margin: 2rem 0;
     }
     
-    /* Button Styling */
+    /* Streamlit Overrides */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(135deg, #1a2a3a 0%, #2e3d4a 100%);
+    }
+    
+    [data-testid="stSidebar"] * {
+        color: white !important;
+    }
+    
     .stButton>button {
-        background: linear-gradient(135deg, #2E7D32 0%, #43A047 100%);
+        background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%);
         color: white;
         border: none;
         border-radius: 10px;
-        padding: 12px 30px;
+        padding: 10px 24px;
         font-weight: 600;
-        font-size: 1em;
-        box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
         transition: all 0.3s ease;
     }
     
@@ -259,43 +454,40 @@ st.markdown("""
         box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
     }
     
-    /* Sidebar Styling */
-    [data-testid="stSidebar"] {
-        background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%);
-    }
-    
-    [data-testid="stSidebar"] * {
-        color: white !important;
-    }
-    
-    /* Highlight Box */
-    .highlight-box {
-        background: linear-gradient(135deg, #FFF9C4 0%, #FFECB3 100%);
-        border: 3px solid #FFA000;
+    /* Owner Showcase */
+    .owner-showcase {
+        background: linear-gradient(135deg, #f8fafc 0%, #e8f5e9 100%);
+        border: 2px solid #2e7d32;
         border-radius: 15px;
-        padding: 20px;
+        padding: 25px;
         margin: 20px 0;
-        box-shadow: 0 4px 20px rgba(255, 160, 0, 0.2);
-        position: relative;
-        z-index: 2;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(46, 125, 50, 0.15);
     }
     
-    /* Feature Card */
-    .feature-card {
-        background: white;
-        border-radius: 15px;
-        padding: 20px;
+    .owner-name {
+        font-size: 1.8em;
+        font-weight: 700;
+        color: #1a2a3a;
         margin: 10px 0;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        border: 2px solid #C8E6C9;
-        position: relative;
-        z-index: 2;
-        transition: all 0.3s ease;
     }
     
-    .feature-card:hover {
-        transform: scale(1.02);
-        box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+    .owner-title {
+        color: #5a6a7a;
+        font-size: 1em;
+        margin: 5px 0;
+    }
+    
+    .owner-badges {
+        margin: 15px 0;
+    }
+    
+    .owner-quote {
+        font-style: italic;
+        color: #5a6a7a;
+        margin: 15px 0;
+        padding: 10px;
+        border-left: 3px solid #2e7d32;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -398,17 +590,13 @@ def ensure_analysis_data() -> bool:
 # HEADER
 # ============================================================
 
-st.markdown('<div class="main-header">🌾 Agricultural Investment Risk Analysis</div>', 
+# Main Header matching HTML design
+st.markdown('<div class="main-header">🌾 <span>AGRICULTURAL</span> INVESTMENT RISK ANALYSIS</div>', 
             unsafe_allow_html=True)
 
 st.markdown("""
 <div class='subtitle'>
-    <p style='margin: 0.5rem 0;'>
-        <strong>🌍 Professional Global Agricultural Investment & Risk Assessment Platform</strong>
-    </p>
-    <p style='font-size: 0.9em; color: #666; margin: 0.5rem 0;'>
-        📊 Powered by FAOSTAT Data • 🗺️ Geospatial Analysis • 📈 Advanced Statistical Modeling • 🤖 AI-Driven Insights
-    </p>
+    Turning agricultural data into actionable investment intelligence.
 </div>
 """, unsafe_allow_html=True)
 
