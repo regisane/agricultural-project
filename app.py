@@ -25,9 +25,38 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom styling - Professional theme
+# Custom styling - Professional theme with visible background
 st.markdown("""
     <style>
+    /* Background Pattern with 🌾 emoji */
+    .stApp {
+        background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e9 100%);
+        position: relative;
+    }
+    
+    .stApp::before {
+        content: "🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 180px;
+        opacity: 0.08;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+        line-height: 1.2;
+    }
+    
+    /* Ensure content stays on top of background */
+    [data-testid="stVerticalBlock"] {
+        position: relative;
+        z-index: 1;
+    }
+    
     /* Main Header */
     .main-header {
         background: linear-gradient(135deg, #2E7D32 0%, #558B2F 100%);
@@ -39,6 +68,8 @@ st.markdown("""
         text-align: center;
         box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
         letter-spacing: -0.5px;
+        position: relative;
+        z-index: 2;
     }
     
     /* Section Headers */
@@ -47,6 +78,8 @@ st.markdown("""
         border-bottom: 3px solid #4CAF50;
         padding-bottom: 0.5rem;
         font-weight: 700;
+        position: relative;
+        z-index: 2;
     }
     
     /* Metric Cards */
@@ -57,6 +90,8 @@ st.markdown("""
         padding: 20px;
         margin: 12px 0;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        position: relative;
+        z-index: 2;
     }
     
     /* Text Colors */
@@ -84,6 +119,19 @@ st.markdown("""
         padding: 1rem;
         border-radius: 6px;
         margin: 1rem 0;
+        position: relative;
+        z-index: 2;
+    }
+    
+    /* Content Sections */
+    [data-testid="stMetricValue"],
+    [data-testid="stMetricDelta"],
+    [data-testid="stMetric"],
+    [data-testid="stExpander"],
+    [data-testid="stDataFrame"],
+    [data-testid="element-container"] {
+        position: relative;
+        z-index: 2;
     }
     
     /* Footer */
