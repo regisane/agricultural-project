@@ -621,8 +621,8 @@ st.sidebar.markdown("---")
 st.sidebar.markdown("""
 ### 📋 Project Information
 **Status:** ✅ Production Ready  
-**Version:** 2.0 Professional  
-**Updated:** 2026-08-15
+**Version:** 3.0 Premium  
+**Updated:** 2026-08-18
 """)
 
 # Load data
