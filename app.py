@@ -518,13 +518,23 @@ def resolve_data_path(filename: str) -> Path:
 
 @st.cache_data
 def load_master_data():
-    """Load master dataset."""
-    data_path = resolve_data_path('agricultural_master_data.csv')
+    """Load master dataset - merged with results for complete data."""
+    master_path = resolve_data_path('agricultural_master_data.csv')
+    results_path = resolve_data_path('final_results.csv')
+    
     try:
-        return pd.read_csv(data_path)
-    except FileNotFoundError:
+        master_df = pd.read_csv(master_path)
+        results_df = pd.read_csv(results_path)
+        
+        # Merge master data with results to get all columns including Investment_Score
+        if 'Country' in master_df.columns and 'Country' in results_df.columns:
+            merged_df = pd.merge(master_df, results_df, on='Country', how='outer', suffixes=('', '_results'))
+            return merged_df
+        else:
+            return results_df  # Fallback to results only
+    except FileNotFoundError as e:
         st.error(
-            "❌ agricultural_master_data.csv not found. Run: python agricultural_analysis.py"
+            f"❌ Data file not found. Run: python agricultural_analysis.py. Error: {e}"
         )
         return None
 
@@ -657,13 +667,13 @@ st.sidebar.markdown(f"**Geographic Data:** {geo_count}")
 if page == "📈 Overview":
     st.header("📊 Analysis Overview")
     
-    # Key Statistics
+    # Key Statistics - Use results_df which has Investment_Score and Composite_Risk_Score
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
         st.metric(
             "Total Countries",
-            f"{len(master_df)}",
+            f"{len(results_df)}",
             "Analyzed"
         )
     
@@ -675,7 +685,7 @@ if page == "📈 Overview":
         )
     
     with col3:
-        avg_investment = master_df['Investment_Score'].mean()
+        avg_investment = results_df['Investment_Score'].mean()
         st.metric(
             "Avg Investment Score",
             f"{avg_investment:.1f}",
@@ -683,7 +693,7 @@ if page == "📈 Overview":
         )
     
     with col4:
-        avg_risk = master_df['Composite_Risk_Score'].mean()
+        avg_risk = results_df['Composite_Risk_Score'].mean()
         st.metric(
             "Avg Risk Score",
             f"{avg_risk:.3f}",
