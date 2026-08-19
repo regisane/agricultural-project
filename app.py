@@ -722,15 +722,17 @@ if page == "📈 Overview":
     with col2:
         st.subheader("⚠️ Highest Risk Countries")
         risk_5 = master_df.nlargest(5, 'Composite_Risk_Score')[
-            ['Country', 'Composite_Risk_Score', 'Crop_Diversity_Score']
+            ['Country', 'Composite_Risk_Score', 'Local_R2']
         ].reset_index(drop=True)
         risk_5.index = risk_5.index + 1
         
         for idx, row in risk_5.iterrows():
+            # Use Local_R2 as a proxy for diversity (model fit quality)
+            diversity_score = row['Local_R2'] * 10  # Scale to 0-10
             st.markdown(f"""
             **{idx}. {row['Country']}**  
             Risk: <span class="danger-text">{row['Composite_Risk_Score']:.3f}</span> | 
-            Diversity: {row['Crop_Diversity_Score']:.1f}/10
+            Diversity: {diversity_score:.1f}/10
             """, unsafe_allow_html=True)
     
     st.markdown("---")
