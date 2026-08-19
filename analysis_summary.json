@@ -1,0 +1,54 @@
+{
+  "analysis_date": "2026-08-19T10:28:51.770812",
+  "total_countries": 227,
+  "valid_coordinates": 140,
+  "top_investment_countries": [
+    {
+      "Country": "China, mainland",
+      "Investment_Score": 93.6
+    },
+    {
+      "Country": "China",
+      "Investment_Score": 83.9
+    },
+    {
+      "Country": "India",
+      "Investment_Score": 75.7
+    },
+    {
+      "Country": "United States of America",
+      "Investment_Score": 75.1
+    },
+    {
+      "Country": "Russian Federation",
+      "Investment_Score": 74.0
+    }
+  ],
+  "top_risk_countries": [
+    {
+      "Country": "American Samoa",
+      "Composite_Risk_Score": 0.7
+    },
+    {
+      "Country": "Aruba",
+      "Composite_Risk_Score": 0.7
+    },
+    {
+      "Country": "Bermuda",
+      "Composite_Risk_Score": 0.7
+    },
+    {
+      "Country": "Cook Islands",
+      "Composite_Risk_Score": 0.7
+    },
+    {
+      "Country": "Kiribati",
+      "Composite_Risk_Score": 0.7
+    }
+  ],
+  "statistics": {
+    "avg_investment_score": 57.77053571428571,
+    "avg_risk_score": 0.5519464285714285,
+    "avg_agricultural_land": 23464.05865418502
+  }
+}
